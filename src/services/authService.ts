@@ -1,0 +1,30 @@
+import axiosInstance from "@/lib/axios";
+import { LoginResponse } from "@/types/Auth";
+import { User } from "@/types/User";
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export const authService = {
+  login: async (credentials: LoginCredentials): Promise<LoginResponse> => {
+    const response = await axiosInstance.post<LoginResponse>("/auth/login", credentials);
+
+    const { access_token, user } = response.data;
+    localStorage.setItem("token", access_token);
+    localStorage.setItem("user", JSON.stringify(user));
+
+    return response.data;
+  },
+
+  fetchCurrentUser: async (): Promise<User | null> => {
+    try {
+      const response = await axiosInstance.get<User>("/auth/me");
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching current user:", error);
+      return null;
+    }
+  },
+};

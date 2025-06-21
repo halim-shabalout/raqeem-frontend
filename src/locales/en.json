@@ -1,0 +1,19 @@
+{
+  "_comment_users": "Users page",
+  "u_users": "Users",
+  "u_user": "User",
+  "u_email": "Email",
+  "u_phone": "Phone Number",
+  "u_address": "Address",
+  "u_status": "Status",
+  "u_add_user": "Add New User",
+  "u_add": "Add",
+  "u_cancel": "Cancel",
+
+  "personal_info": "Personal Information",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "email": "Email",
+  "phone": "Phone Number",
+  "address": "Address"
+}

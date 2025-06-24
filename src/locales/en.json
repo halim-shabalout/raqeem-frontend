@@ -1,4 +1,25 @@
 {
+  "edit_profile": "Edit Profile",
+  "support": "Support",
+  "sign-out": "Sign Out",
+  "nav_product_categories": "Product Categories",
+  "nav_product_subcategories": "Product Subcategories",
+  "nav_original_product": "Products",
+  "nav_add_product": "Add",
+  "nav_products": "Products",
+  "nav_customer": "Customers",
+  "nav_customer_list": "Customer List",
+  "nav_add_customer": "Add",
+  "nav_original_permissions": "Permissions",
+  "nav_permissions": "Permissions",
+  "nav_roles": "Roles",
+  "nav_price_offers_list": "Price Offers List",
+  "nav_price_offers": "Price Offers",
+  "nav_add_price_offers": "Add",
+  "nav_original_users": "Users",
+  "nav_users": "Users",
+  "nav_add_users": "Add",
+  "register_sentence": "Create Quotes Fast. Close Deals Faster.",
   "_comment_users": "Users page",
   "u_users": "Users",
   "u_user": "User",
@@ -15,5 +36,6 @@
   "last_name": "Last Name",
   "email": "Email",
   "phone": "Phone Number",
-  "address": "Address"
+  "address": "Address",
+  "role": "Role"
 }

@@ -27,7 +27,7 @@ export default function UserInfoCard() {
               { id:2, label: messages["email"], value: 'email' },
               { id:3, label: messages["phone"], value: 'phone' },
               { id:4, label: messages["address"], value: 'address' },
-              { id:5, label: "Role", value: "-" }
+              { id:5, label: messages["role"], value: "-" }
             ].map(({ id, label, value }) => (
               <div key={id}>
                 <p className="mb-2 text-xs text-gray-500 dark:text-gray-400">{label}</p>

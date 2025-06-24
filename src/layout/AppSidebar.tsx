@@ -11,6 +11,11 @@ import {
   UserCircleIcon,
   BoxCubeIcon,
   GroupIcon,
+  BoxIcon,
+  LockIcon,
+  UserIcon,
+  ListIcon,
+  PlugInIcon,
 } from "../icons/index";
 import { useLocale } from '@/context/LocaleContext';
 
@@ -27,10 +32,52 @@ const getNavItems = (messages: any): NavItem[] => [
     name: messages["nav_dashboard"] || "Dashboard",
     path: "/",
   },
-
+  {
+    icon: <BoxIcon  />,
+    name: messages["nav_products"] || "Products",
+    subItems: [
+      { name: messages["nav_product_categories"] || "Product Categories", path: "/product/product-categories" },
+      { name: messages["nav_product_subcategories"] || "Product Subcategories", path: "/product/product-subcategories" },
+      { name: messages["nav_original_product"] || "Products", path: "/product/original-products" },
+      { name: messages["nav_add_product"] || "Add", path: "/product/add-product" },
+    
+    ],
+  },
+  {
+    icon: <GroupIcon/>,
+    name: messages["nav_customer"] || "Customers",
+    subItems: [
+      { name: messages["nav_customer_list"] || "Customer List", path: "/clients/client-list" },
+      { name: messages["nav_add_customer"] || "Add", path: "/clients/add-client" },
+    ],
+  },
+  {
+    icon: <ListIcon  />,
+    name: messages["nav_price_offer"] || "Price Offers",
+    subItems: [
+      { name: messages["nav_price_offers_list"] || "Price Offers List", path: "/price-offers/price-offers-list" },
+      { name: messages["nav_add_price_offers"] || "Add", path: "/price-offers/add-price-offers" },
+    ],
+  },
 ];
 
 const getOtherItems = (messages: any): NavItem[] => [
+  {
+    icon: <LockIcon  />,
+    name: messages["nav_permissions"] || "Permissions",
+    subItems: [
+      { name: messages["nav_roles"] || "Roles", path: "/permissions/roles" },
+      { name: messages["nav_original_permissions"] || "Permissions", path: "/permissions/original-permissions" },
+    ],
+  },
+  {
+    icon: <UserIcon/>,
+    name: messages["nav_users"] || "Users",
+    subItems: [
+      { name: messages["nav_original_users"] || "Users", path: "/users/original-users" },
+      { name: messages["nav_add_users"] || "Add", path: "/users/add-users" },
+    ],
+  },
   {
     icon: <UserCircleIcon />,
     name: messages["nav_profile"] || "User Profile",

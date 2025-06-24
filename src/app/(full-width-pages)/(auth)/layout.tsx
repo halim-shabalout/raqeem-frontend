@@ -1,3 +1,4 @@
+import AuthSection from "@/components/auth/AuthSection";
 import GridShape from "@/components/common/GridShape";
 import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
 
@@ -20,20 +21,7 @@ export default function AuthLayout({
             <div className="relative items-center justify-center  flex z-1">
               {/* <!-- ===== Common Grid Shape Start ===== --> */}
               <GridShape />
-              <div className="flex flex-col items-center max-w-xs">
-                <Link href="/" className="block">
-                  <Image
-                    width={800}
-                    height={80}
-                    src="/images/logo/w-main-logo-removebg.png"
-                    alt="Logo"
-                  />
-                </Link>
-                <p className="text-center text-xlg text-gray-400 dark:text-white/80">
-                  Imaginov:
-                  Solving with Imagination. Scaling with Innovation
-                </p>
-              </div>
+                <AuthSection/>
             </div>
           </div>
           <div className="fixed bottom-6 right-6 z-50 hidden sm:block">

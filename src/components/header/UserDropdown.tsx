@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
+import { useLocale } from "@/context/LocaleContext";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const { messages } = useLocale();
 
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -89,7 +91,7 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-              Edit profile
+            {messages["edit_profile"] || "Edit Profile"}
             </DropdownItem>
           </li>
           <li>
@@ -116,7 +118,8 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-              Support
+               {messages["support"] || "support"}
+
             </DropdownItem>
 
           </li>
@@ -140,7 +143,7 @@ export default function UserDropdown() {
               fill=""
             />
           </svg>
-          Sign out
+          {messages["sign-out"] || "Sign Out"}
         </Link>
       </Dropdown>
     </div>

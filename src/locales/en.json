@@ -1,4 +1,19 @@
 {
+  
+  "_comment_signin": "SignIn page",
+  "signin_title": "Sign In",
+  "signin_description": "Enter your email and password to sign in!",
+  "signin_email": "Email",
+  "signin_password": "Password",
+  "signin_remember": "Keep me logged in",
+  "signin_forgot_password": "Forgot password?",
+  "signin_button": "Sign in",
+  "signin_loading": "Signing in...",
+  "signin_error_invalid": "Invalid email or password",
+  "signin_success": "Login successful...",
+  "signin_no_account": "Don't have an account?",
+  "signin_signup_link": "Sign Up",
+  
   "edit_profile": "Edit Profile",
   "support": "Support",
   "sign-out": "Sign Out",

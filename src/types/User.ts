@@ -7,7 +7,11 @@ export interface User {
   address?: string;
   phone?: string;
   lang?: string;
-  role_id: {
+  organization:{
+    id: string;
+    name: string
+  }
+  role: {
     id: string;
     name: string;
     description?: string;

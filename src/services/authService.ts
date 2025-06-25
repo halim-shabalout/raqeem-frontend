@@ -9,13 +9,18 @@ export interface LoginCredentials {
 
 export const authService = {
   login: async (credentials: LoginCredentials): Promise<LoginResponse> => {
-    const response = await axiosInstance.post<LoginResponse>("/auth/login", credentials);
 
-    const { access_token, user } = response.data;
-    localStorage.setItem("token", access_token);
-    localStorage.setItem("user", JSON.stringify(user));
-
-    return response.data;
+    try {
+      const response = await axiosInstance.post<LoginResponse>("/auth/login", credentials);
+      const { access_token, user } = response.data;
+      
+      localStorage.setItem("token", access_token);
+      localStorage.setItem("user", JSON.stringify(user));
+      
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   },
 
   fetchCurrentUser: async (): Promise<User | null> => {

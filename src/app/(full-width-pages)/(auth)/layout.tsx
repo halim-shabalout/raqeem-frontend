@@ -1,17 +1,40 @@
+"use client";
+
 import AuthSection from "@/components/auth/AuthSection";
 import GridShape from "@/components/common/GridShape";
 import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
 
 import { ThemeProvider } from "@/context/ThemeContext";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import { useLocale, LocaleProvider } from "@/context/LocaleContext";
 
-export default function AuthLayout({
+import React, { useEffect } from "react";
+
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <LocaleProvider>
+      <InnerAuthLayout>{children}</InnerAuthLayout>
+    </LocaleProvider>
+  );
+}
+
+function InnerAuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  const { locale, isHydrated } = useLocale();
+  const isRtl = locale === "ar";
+
+  useEffect(() => {
+    if (isHydrated) {
+      document.documentElement.lang = locale;
+      document.documentElement.dir = isRtl ? "rtl" : "ltr";
+    }
+  }, [locale, isHydrated]);
+
+  if (!isHydrated) return null;
+
   return (
     <div className="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
       <ThemeProvider>
@@ -21,7 +44,7 @@ export default function AuthLayout({
             <div className="relative items-center justify-center  flex z-1">
               {/* <!-- ===== Common Grid Shape Start ===== --> */}
               <GridShape />
-                <AuthSection/>
+              <AuthSection />
             </div>
           </div>
           <div className="fixed bottom-6 right-6 z-50 hidden sm:block">

@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import Input from "@/components/form/input/InputField";
 import Checkbox from "@/components/form/input/Checkbox";
 import Label from "@/components/form/Label";
+import LanguageSwitcher from "@/components/header/LanguageSwitcher";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -24,20 +25,20 @@ export default function SignUpForm() {
   const { register, registerLoading, registerError } = useAuth();
   const [successMessage, setSuccessMessage] = useState("");
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  setFormError(null);
+    setFormError(null);
 
-  if (!first_name || !last_name || !email || !password) {
-    setFormError("Please fill in all required fields.");
-    return;
-  }
+    if (!first_name || !last_name || !email || !password) {
+      setFormError("Please fill in all required fields.");
+      return;
+    }
 
-  if (!isChecked) {
-    setFormError("You must accept the terms and conditions.");
-    return;
-  }
+    if (!isChecked) {
+      setFormError("You must accept the terms and conditions.");
+      return;
+    }
     const isSuccess = await register({
       first_name,
       last_name,
@@ -57,13 +58,16 @@ const handleSubmit = async (e: React.FormEvent) => {
       }, 1000);
     } else {
       setSuccessMessage("");
-          setFormError(registerError);
+      setFormError(registerError);
     }
   };
 
   return (
     <div className="flex flex-col flex-1 lg:w-1/2 w-full overflow-y-auto no-scrollbar">
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
+        <div className="flex justify-end mb-4">
+          <LanguageSwitcher />
+        </div>
         <div>
           <div className="mb-5 sm:mb-8">
             <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">

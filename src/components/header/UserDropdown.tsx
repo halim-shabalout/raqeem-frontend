@@ -1,15 +1,29 @@
 "use client";
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { useLocale } from "@/context/LocaleContext";
+import { useAuth } from '@/hooks/useAuth';
+import { User } from '@/types/User';
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const { messages } = useLocale();
 
+    const { fetchCurrentUser, loading, error } = useAuth();
+
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const getUser = async () => {
+            const data = await fetchCurrentUser();
+            if (data) setUser(data);
+        };
+
+        getUser();
+    }, []);
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.stopPropagation();
@@ -34,7 +48,7 @@ export default function UserDropdown() {
           />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">Raqeem user</span>
+        <span className="block mr-1 font-medium text-theme-sm">{user?.first_name} {user?.last_name}</span>
 
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
@@ -62,10 +76,10 @@ export default function UserDropdown() {
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            Raqeem user
+            {user?.role?.name}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-            user@raqeem.com
+            {user?.email}
           </span>
         </div>
         <ul className="flex flex-col gap-1 pt-4 pb-3 border-b border-gray-200 dark:border-gray-800">

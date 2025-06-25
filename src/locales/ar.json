@@ -1,4 +1,18 @@
 {
+  "_comment_signin": "صفحة تسجيلالدخول",
+  "signin_title": "تسجيل الدخول",
+  "signin_description": "أدخل بريدك الإلكتروني وكلمة المرور لتسجيل الدخول!",
+  "signin_email": "البريد الإلكتروني",
+  "signin_password": "كلمة المرور",
+  "signin_remember": "تذكرني",
+  "signin_forgot_password": "هل نسيت كلمة المرور؟",
+  "signin_button": "تسجيل الدخول",
+  "signin_loading": "جارٍ تسجيل الدخول...",
+  "signin_error_invalid": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+  "signin_success": "تم تسجيل الدخول بنجاح  ...",
+  "signin_no_account": "لا تملك حسابًا؟",
+  "signin_signup_link": "سجّل الآن",
+
   "edit_profile": "تعديل الملف الشخصي",
   "support": "الدعم الفني",
   "sign-out": "تسجيل الخروج",

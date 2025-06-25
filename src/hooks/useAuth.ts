@@ -11,7 +11,11 @@ export function useAuth() {
     setLoading(true);
     setError(null);
     try {
-      return await authService.login(credentials);
+      const response = await authService.login(credentials);
+      
+      localStorage.setItem("token", response.access_token);
+      
+      return response;
     } catch (err: any) {
       setError(err?.response?.data?.message || "Login failed");
       return null;
@@ -24,7 +28,8 @@ export function useAuth() {
     setLoading(true);
     setError(null);
     try {
-      return await authService.fetchCurrentUser();
+      const user = await authService.fetchCurrentUser();
+      return user;
     } catch (err: any) {
       setError("Failed to fetch user");
       return null;

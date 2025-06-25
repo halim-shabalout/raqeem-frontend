@@ -2,9 +2,14 @@
 import { useModal } from "../../hooks/useModal";
 import { EditUserModal } from "./EditUserModal";
 import { useLocale } from "@/context/LocaleContext";
+import { User } from '@/types/User';
+
+type Props = {
+  user: User;
+};
 
 
-export default function UserInfoCard() {
+export default function UserInfoCard({ user }: Props) {
   const { messages } = useLocale();
   const { isOpen, openModal, closeModal } = useModal();
 
@@ -22,12 +27,12 @@ export default function UserInfoCard() {
 
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
             {[
-              { id:0, label: messages["first_name"], value: 'first_name' },
-              { id:1, label: messages["last_name"], value: 'last_name' },
-              { id:2, label: messages["email"], value: 'email' },
-              { id:3, label: messages["phone"], value: 'phone' },
-              { id:4, label: messages["address"], value: 'address' },
-              { id:5, label: messages["role"], value: "-" }
+              { id:0, label: messages["first_name"], value: user.first_name },
+              { id:1, label: messages["last_name"], value: user.last_name },
+              { id:2, label: messages["email"], value: user.email },
+              { id:3, label: messages["phone"], value: user.phone || '-' },
+              { id:4, label: messages["address"], value: user.address || '-' },
+              { id:5, label: messages["role"], value: user.role?.name || "-" }
             ].map(({ id, label, value }) => (
               <div key={id}>
                 <p className="mb-2 text-xs text-gray-500 dark:text-gray-400">{label}</p>

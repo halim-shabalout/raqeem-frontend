@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AppHeader from "@/layout/AppHeader";
 import AppSidebar from "@/layout/AppSidebar";
 import Backdrop from "@/layout/Backdrop";
 import { useSidebar } from "@/context/SidebarContext";
 import { useLocale, LocaleProvider } from "@/context/LocaleContext";
+import UnauthorizedPage from "../unauthorized";
 
 export default function AdminLayout({
   children,
@@ -22,6 +23,11 @@ export default function AdminLayout({
 function InnerAdminLayout({ children }: { children: React.ReactNode }) {
   const { isExpanded, isHovered, isMobileOpen } = useSidebar();
   const { locale, isHydrated } = useLocale();
+  const [hasToken, setHasToken] = useState<boolean | null>(null);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setHasToken(!!token);
+  }, []);
 
   const isRtl = locale === "ar";
 
@@ -43,7 +49,10 @@ function InnerAdminLayout({ children }: { children: React.ReactNode }) {
     : "lg:ml-[90px]";
 
   if (!isHydrated) return null;
-
+  
+  if (!hasToken) {
+    return <UnauthorizedPage />;
+  }
   return (
     <div className="min-h-screen xl:flex">
       <AppSidebar />

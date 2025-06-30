@@ -3,7 +3,6 @@ import './globals.css';
 
 import { SidebarProvider } from '@/context/SidebarContext';
 import { ThemeProvider } from '@/context/ThemeContext';
-import { LocaleProvider } from '@/context/LocaleContext'; 
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -18,11 +17,9 @@ export default function RootLayout({
     <html>
       <body className={`${outfit.className} dark:bg-gray-900`}>
         <ThemeProvider>
-              <LocaleProvider>
-                <SidebarProvider>
-                  {children}
-                </SidebarProvider>
-              </LocaleProvider>
+          <SidebarProvider>
+            {children}
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>

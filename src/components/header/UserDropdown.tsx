@@ -1,7 +1,7 @@
 "use client";
 import {useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { useLocale } from "@/context/LocaleContext";
@@ -11,19 +11,25 @@ import { User } from '@/types/User';
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const { messages } = useLocale();
+  const { logout } = useAuth();
+  const router = useRouter();
 
-    const { fetchCurrentUser, loading, error } = useAuth();
+  const { fetchCurrentUser } = useAuth();
+  const [user, setUser] = useState<User | null>(null);
 
-    const [user, setUser] = useState<User | null>(null);
+  const handleLogout = () => {
+    logout();
+    router.push('/signin');
+  };
 
-    useEffect(() => {
-        const getUser = async () => {
-            const data = await fetchCurrentUser();
-            if (data) setUser(data);
-        };
+  useEffect(() => {
+    const getUser = async () => {
+      const data = await fetchCurrentUser();
+      if (data) setUser(data);
+    };
 
-        getUser();
-    }, []);
+    getUser();
+  }, []);
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.stopPropagation();
@@ -105,7 +111,7 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-            {messages["edit_profile"] || "Edit Profile"}
+              {messages["edit_profile"] || "Edit Profile"}
             </DropdownItem>
           </li>
           <li>
@@ -132,14 +138,14 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-               {messages["support"] || "support"}
+              {messages["support"] || "support"}
 
             </DropdownItem>
 
           </li>
         </ul>
-        <Link
-          href="/signin"
+        <button
+          onClick={handleLogout}
           className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
         >
           <svg
@@ -158,7 +164,7 @@ export default function UserDropdown() {
             />
           </svg>
           {messages["sign-out"] || "Sign Out"}
-        </Link>
+        </button>
       </Dropdown>
     </div>
   );

@@ -12,7 +12,7 @@ type LocaleContextType = {
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: React.ReactNode }) => {
-  const [locale, setLocale] = useState("en");
+  const [locale, setLocale] = useState("ar");
   const [messages, setMessages] = useState<Record<string, string>>({});
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -22,7 +22,7 @@ export const LocaleProvider = ({ children }: { children: React.ReactNode }) => {
         const userData = localStorage.getItem("user");
         if (userData) {
           const user = JSON.parse(userData);
-          setLocale(user.lang || "en");
+          setLocale(user.lang || "ar");
         }
       } catch (error) {
         console.error("Failed to load locale from localStorage:", error);

@@ -1,11 +1,7 @@
 import axiosInstance from "@/lib/axios";
-import { LoginResponse } from "@/types/Auth";
+import { LoginCredentials, LoginResponse } from "@/types/Auth";
 import { User } from "@/types/User";
 
-export interface LoginCredentials {
-  email: string;
-  password: string;
-}
 
 export const authService = {
   login: async (credentials: LoginCredentials): Promise<LoginResponse> => {

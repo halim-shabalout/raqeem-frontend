@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { authService, LoginCredentials } from "@/services/authService";
-import { LoginResponse } from "@/types/Auth";
+import { authService } from "@/services/authService";
+import { LoginCredentials, LoginResponse } from "@/types/Auth";
 import { User } from "@/types/User";
 
 export function useAuth() {

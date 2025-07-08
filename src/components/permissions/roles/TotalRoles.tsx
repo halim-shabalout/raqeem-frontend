@@ -112,15 +112,14 @@ const tableData: Order[] = [
   },
 ];
 
-
-export const OriginalUsersComponent = () => {
+const TotalRoles = () => {
   const { messages } = useLocale();
   return (
-        <>
-            <h3 className="mb-5 text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-7">
-                {messages["nav_original_users"] || "Users"}
-            </h3>
-              <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+  <div>
+      <h3 className="mb-5 text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-7">
+        {messages["nav_roles"] || "Total Roles"}
+      </h3>
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <div className="min-w-[1102px]">
             <Table>
@@ -129,9 +128,8 @@ export const OriginalUsersComponent = () => {
                 <TableRow>
                   <TableCell
                     isHeader
-                    className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 flex items-center gap-2"
+                    className="px-6 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400 flex items-center gap-2"
                   >
-                    <span>ID</span>
                     <Checkbox checked={false} onChange={() => {}} />
                   </TableCell>
                   <TableCell
@@ -172,7 +170,6 @@ export const OriginalUsersComponent = () => {
                 {tableData.map((order) => (
                   <TableRow key={order.id}>
                     <TableCell className="px-5 py-4 sm:px-6 text-start flex items-center gap-2">
-                      <span>{order.id}</span>
                       <Checkbox checked={false} onChange={() => {}} />
                     </TableCell>
                     <TableCell className="px-5 py-4 sm:px-6 text-start">
@@ -240,6 +237,7 @@ export const OriginalUsersComponent = () => {
           </div>
         </div>
       </div>
-        </>
+  </div>
   );
 };
+export default TotalRoles;

@@ -9,6 +9,7 @@ import Input from "@/components/form/input/InputField";
 import Checkbox from "@/components/form/input/Checkbox";
 import Label from "@/components/form/Label";
 import LanguageSwitcher from "@/components/header/LanguageSwitcher";
+import { useLocale } from "@/context/LocaleContext";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -24,6 +25,8 @@ export default function SignUpForm() {
 
   const { register, registerLoading, registerError } = useAuth();
   const [successMessage, setSuccessMessage] = useState("");
+  const { messages } = useLocale();
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,10 +74,10 @@ export default function SignUpForm() {
         <div>
           <div className="mb-5 sm:mb-8">
             <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-              Sign Up
+              {messages["signup_title"] || "Sign Up"}
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Enter your email and password to sign up!
+              {messages["signup_description"] || "Enter your email and password to sign up!"}
             </p>
           </div>
           <form onSubmit={handleSubmit}>
@@ -82,46 +85,51 @@ export default function SignUpForm() {
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
                   <Label>
-                    First Name<span className="text-error-500">*</span>
+                    {messages["signup_first_name"] || "First Name"}
+                    <span className="text-error-500">*</span>
                   </Label>
                   <Input
                     type="text"
                     value={first_name}
                     onChange={(e) => setFirstName(e.target.value)}
-                    placeholder="Enter your first name"
+                    placeholder={messages["signup_first_name_placeholder"] || "Enter your first name"}
                   />
                 </div>
                 <div>
                   <Label>
-                    Last Name<span className="text-error-500">*</span>
+                    {messages["signup_last_name"] || "Last Name"}
+                    <span className="text-error-500">*</span>
                   </Label>
                   <Input
                     type="text"
                     value={last_name}
                     onChange={(e) => setLastName(e.target.value)}
-                    placeholder="Enter your last name"
+                    placeholder={messages["signup_last_name_placeholder"] || "Enter your last name"}
                   />
                 </div>
               </div>
 
               <div>
                 <Label>
-                  Email<span className="text-error-500">*</span>
+                  {messages["signup_email"] || "Email"}
+                  <span className="text-error-500">*</span>
                 </Label>
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder={messages["signup_email_placeholder"] || "Enter your email"}
                 />
               </div>
+
               <div>
                 <Label>
-                  Password<span className="text-error-500">*</span>
+                  {messages["signup_password"] || "Password"}
+                  <span className="text-error-500">*</span>
                 </Label>
                 <div className="relative">
                   <Input
-                    placeholder="Enter your password"
+                    placeholder={messages["signup_password_placeholder"] || "Enter your password"}
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -138,6 +146,7 @@ export default function SignUpForm() {
                   </span>
                 </div>
               </div>
+
               <div className="flex items-center gap-3">
                 <Checkbox
                   className="w-5 h-5"
@@ -145,16 +154,17 @@ export default function SignUpForm() {
                   onChange={setIsChecked}
                 />
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  By creating an account, you agree to the{" "}
+                  {messages["signup_agree"] || "By creating an account, you agree to the "}
                   <span className="text-gray-800 dark:text-white/90">
-                    Terms and Conditions
+                    {messages["signup_terms"] || "Terms and Conditions"}
                   </span>{" "}
-                  and our{" "}
+                  {messages["signup_and"] || "and our"}{" "}
                   <span className="text-gray-800 dark:text-white">
-                    Privacy Policy
+                    {messages["signup_privacy"] || "Privacy Policy"}
                   </span>.
                 </p>
               </div>
+
               {formError && (
                 <p className="text-sm text-error-500">{formError}</p>
               )}
@@ -168,7 +178,9 @@ export default function SignUpForm() {
                   disabled={registerLoading}
                   className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600 disabled:opacity-50"
                 >
-                  {registerLoading ? "Signing Up..." : "Sign Up"}
+                  {registerLoading
+                    ? messages["signup_loading"] || "Signing Up..."
+                    : messages["signup_button"] || "Sign Up"}
                 </button>
               </div>
             </div>
@@ -176,12 +188,12 @@ export default function SignUpForm() {
 
           <div className="mt-5">
             <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
-              Already have an account?{" "}
+              {messages["signup_have_account"] || "Already have an account?"}{" "}
               <Link
                 href="/signin"
                 className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
               >
-                Sign In
+                {messages["signup_signin"] || "Sign In"}
               </Link>
             </p>
           </div>

@@ -1,4 +1,4 @@
-import { CustomerListComopnent } from "@/components/clients/customer-list/CustomerListComopnent";
+import { ClientListComopnent } from "@/components/clients/client-list/ClientListComopnent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   description: "Quotations",
 };
 
-export default function CustomerList() {
+export default function ClientList() {
   return (
     <>
-        <CustomerListComopnent/>
+        <ClientListComopnent/>
     </>
   );
 }

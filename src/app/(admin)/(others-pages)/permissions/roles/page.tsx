@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { RolesComponent } from "@/components/permissions/roles/RolesComponent";
+import RoleComponent from "@/components/permissions/roles/RoleComponent";
 
 export const metadata: Metadata = {
   title: "Raqeem",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Roles() {
   return (
     <>
-        <RolesComponent/>
+        <RoleComponent/>
     </>
   );
 }

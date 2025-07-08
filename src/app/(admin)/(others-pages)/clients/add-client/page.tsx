@@ -1,4 +1,4 @@
-import { AddCustomerComponent } from "@/components/clients/add-customer/AddCustomerComponent";
+import { AddClientComponent } from "@/components/clients/add-client/AddClientComponent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   description: "Quotations",
 };
 
-export default function AddCustomer() {
+export default function Addclient() {
   return (
     <>
-        <AddCustomerComponent/>
+        <AddClientComponent/>
     </>
   );
 }

@@ -6,8 +6,10 @@ import { Modal } from "@/components/ui/modal";
 import React, { useState } from 'react';
 import Checkbox from "@/components/form/input/Checkbox";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table';
+import { useLocale } from '@/context/LocaleContext';
 
 const AddRoleForm = () => {
+      const { messages } = useLocale();
   const permissionsList = [
     "User Management",
     "Content Management",
@@ -66,9 +68,10 @@ const AddRoleForm = () => {
 
   return (
     <div>
-      <Button size="sm" onClick={openModal}>
-        Add Role
-      </Button>
+    <Button size="sm" onClick={openModal}>
+  {messages["add_role"] || "Add Role"}
+</Button>
+
 
       <Modal
         isOpen={isOpen}
@@ -77,13 +80,14 @@ const AddRoleForm = () => {
       >
         <form>
           <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90 text-center">
-            Add Role
-          </h4>
+  {messages["add_role_title"] || "Add Role"}
+</h4>
+
 
           <div className="grid grid-cols-1 gap-y-5">
             <div>
-              <Label>Name</Label>
-              <Input type="text" placeholder="Role Name" className="w-full" />
+             <Label>{messages["role_name_label"] || "Name"}</Label>
+<Input type="text" placeholder={messages["role_name_placeholder"] || "Role Name"} className="w-full" />
             </div>
           </div>
 
@@ -91,10 +95,11 @@ const AddRoleForm = () => {
             <Table>
               <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
                 <TableRow>
-                  <TableCell isHeader>Permission</TableCell>
-                  <TableCell isHeader>Read</TableCell>
-                  <TableCell isHeader>Write</TableCell>
-                  <TableCell isHeader>Create</TableCell>
+<TableCell isHeader>{messages["permission"] || "Permission"}</TableCell>
+<TableCell isHeader>{messages["read"] || "Read"}</TableCell>
+<TableCell isHeader>{messages["write"] || "Write"}</TableCell>
+<TableCell isHeader>{messages["create"] || "Create"}</TableCell>
+
                 </TableRow>
               </TableHeader>
 
@@ -136,11 +141,11 @@ const AddRoleForm = () => {
 
           <div className="flex items-center justify-end w-full gap-3 mt-6">
             <Button size="sm" variant="outline" onClick={closeModal}>
-              Close
-            </Button>
-            <Button size="sm" onClick={handleSave}>
-              Submit
-            </Button>
+  {messages["close"] || "Close"}
+</Button>
+<Button size="sm" onClick={handleSave}>
+  {messages["submit"] || "Submit"}
+</Button>
           </div>
         </form>
       </Modal>

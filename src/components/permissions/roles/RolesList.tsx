@@ -53,22 +53,30 @@ const roles = [
 ];
  const RolesList = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const { messages } = useLocale();
+const { messages, locale } = useLocale();
+const isRtl = locale === "ar";
 
   return (
     <>
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-          {messages[""] || "Roles List"}
-        </h3>
-        <AddRoleForm />
-      </div>
+   <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+  <div>
+    <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
+      {messages["roles_list_title"] || "Roles List"}
+    </h3>
+    <p className="text-sm text-gray-500 dark:text-gray-400 max-w-l">
+      {messages["roles_list_description"] || "A role provides access to predefined menus and features. Based on the assigned role, an administrator can access exactly what they need."}
+    </p>
+  </div>
+  <AddRoleForm />
+</div>
+
+
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {roles.map((role, index) => (
           <RoleCard key={index} title="">
             <div className="relative">
-              <div className="absolute top-0 right-0">
+              <div className={`absolute top-0 ${isRtl ? "left-0" : "right-0"}`}>
                 <button
                   className="dropdown-toggle p-1"
                   onClick={() =>

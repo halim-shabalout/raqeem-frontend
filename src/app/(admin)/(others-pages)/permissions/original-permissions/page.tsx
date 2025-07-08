@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { OriginalPermissionsComponent } from "@/components/permissions/original-permissions/OriginalPermissionsComponent";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Raqeem",
